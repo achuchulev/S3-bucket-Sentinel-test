@@ -37,7 +37,7 @@ resource "aws_iam_policy" "replication" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.source.arn}"
+        "${aws_s3_bucket.niki.arn}"
       ]
     },
     {
