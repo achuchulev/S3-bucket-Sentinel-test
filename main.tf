@@ -78,3 +78,30 @@ resource "aws_s3_bucket" "niki" {
   }
 }
 
+resource "aws_s3_bucket_policy" "b" {
+  bucket = aws_s3_bucket.b.id
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression's result to valid JSON syntax.
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Id": "ExamplePolicy",
+    "Statement": [
+        {
+            "Sid": "AllowSSLRequestsOnly",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::niki-test-1234-sofia",
+                "arn:aws:s3:::niki-test-1234-sofia/*"
+            ],
+            "Condition": {
+                "Bool": {
+                    "aws:SecureTransport": "false"
+                }
+            }
+        }
+    ]
+  })
+}
