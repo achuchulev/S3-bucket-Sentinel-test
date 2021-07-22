@@ -71,7 +71,7 @@ resource "aws_iam_role_policy_attachment" "replication" {
 }
 
 resource "aws_s3_bucket" "niki" {
-  bucket = "niki_test_1234_sofia"
+  bucket = "niki-test-1234-sofia"
 
   versioning {
     enabled = true
