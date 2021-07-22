@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 resource "aws_kms_key" "mykey" {
   description             = "KKMS key"
   deletion_window_in_days = 10
@@ -6,7 +10,11 @@ resource "aws_kms_key" "mykey" {
 resource "aws_s3_bucket" "test" {
   bucket = "nikolay-test-bucket"
   acl    = "private"
-  
+
+  tags = {
+    Name        = "nikolay-test-bucket"
+    Environment = "dev"
+  }
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
@@ -14,11 +22,6 @@ resource "aws_s3_bucket" "test" {
         sse_algorithm     = "aws:kms"
       }
     }
-  }
-
-  tags = {
-    Name        = nikolay-test-bucket"
-    Environment = "dev"
   }
 }
 
