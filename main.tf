@@ -3,11 +3,11 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "test" {
-  bucket = "nikolay-test-bucket"
+  bucket = "nikolay"
   acl    = "private"
 
   tags = {
-    Name        = "nikolay-test-bucket"
+    Name        = "nikolay"
     Environment = "dev"
   }
 }
