@@ -48,7 +48,7 @@ resource "aws_iam_policy" "replication" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.source.arn}/*"
+        "${aws_s3_bucket.niki.arn}/*"
       ]
     },
     {
@@ -58,7 +58,7 @@ resource "aws_iam_policy" "replication" {
         "s3:ReplicateTags"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.source.arn}/*"
+      "Resource": "${aws_s3_bucket.niki.arn}/*"
     }
   ]
 }
@@ -70,8 +70,8 @@ resource "aws_iam_role_policy_attachment" "replication" {
   policy_arn = aws_iam_policy.replication.arn
 }
 
-resource "aws_s3_bucket" "source" {
-  bucket = "nikolay"
+resource "aws_s3_bucket" "niki" {
+  bucket = "niki"
 
   versioning {
     enabled = true
